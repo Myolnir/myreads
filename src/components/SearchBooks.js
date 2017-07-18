@@ -8,7 +8,8 @@ import Book from './Book'
 class SearchBooks extends Component {
 
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    moveToShelf: PropTypes.func.isRequired
   }
 
   state = {
@@ -25,7 +26,7 @@ class SearchBooks extends Component {
 
   render() {
     const { query } = this.state
-    const { books } = this.props
+    const { books, moveToShelf } = this.props
 
     let showingBooks
     if (query) {
@@ -62,7 +63,11 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {showingBooks.map((book) => (
-              <Book book={book} />
+              <Book
+                key={book.id}
+                book={book}
+                moveToShelf={moveToShelf}
+              />
             ))}
           </ol>
         </div>
