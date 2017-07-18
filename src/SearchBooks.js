@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
 import BookSelector from './booksSelector'
+import sortBy from 'sort-by'
 
 class SearchBooks extends Component {
 
@@ -34,6 +35,8 @@ class SearchBooks extends Component {
       showingBooks = books
     }
 
+    showingBooks.sort(sortBy('title'))
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -48,8 +51,9 @@ class SearchBooks extends Component {
 
           </div>
         </div>
+        
         {showingBooks.length !== books.length && (
-          <div className='showing-contacts'>
+          <div className='showing-books'>
             <span>Now showing {showingBooks.length} of {books.length} total</span>
             <button onClick={this.clearQuery}>Show all</button>
           </div>
