@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
-import BookSelector from './booksSelector'
 import sortBy from 'sort-by'
+import Book from './Book'
 
 class SearchBooks extends Component {
 
@@ -30,7 +30,7 @@ class SearchBooks extends Component {
     let showingBooks
     if (query) {
       const match = new RegExp(escapeRegExp(query), 'i')
-      showingBooks = books.filter((book) => match.test(book.title))
+      showingBooks = books.filter((book) => match.test(book.author))
     } else {
       showingBooks = books
     }
@@ -51,7 +51,7 @@ class SearchBooks extends Component {
 
           </div>
         </div>
-        
+
         {showingBooks.length !== books.length && (
           <div className='showing-books'>
             <span>Now showing {showingBooks.length} of {books.length} total</span>
@@ -62,24 +62,7 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {showingBooks.map((book) => (
-              <li key={book.id}>
-                <div className="book">
-                  <div className="book-top">
-                    <div className="book-cover"
-                      style={
-                          {
-                            width: 128,
-                            height: 193,
-                            backgroundImage: `url("${book.imageLinks.thumbnail}")`
-                          }
-                        }>
-                      </div>
-                    <BookSelector />
-                  </div>
-                  <div className="book-title">{book.title}</div>
-                  <div className="book-authors">{book.author}</div>
-                </div>
-              </li>
+              <Book book={book} />
             ))}
           </ol>
         </div>
