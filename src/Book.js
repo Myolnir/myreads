@@ -6,12 +6,13 @@ import BookSelector from './booksSelector'
 class Book extends Component {
 
   static propTypes = {
-    book: PropTypes.array.isRequired
+    book: PropTypes.object.isRequired,
+    moveToShelf: PropTypes.func.isRequired
   }
 
   render() {
     debugger;
-    const { book } = this.props
+    const { book, moveToShelf } = this.props
     return (
       <li key={book.id}>
         <div className="book">
@@ -25,7 +26,10 @@ class Book extends Component {
                   }
                 }>
               </div>
-            <BookSelector />
+            <BookSelector
+              book={book}
+              moveToShelf={moveToShelf}
+            />
           </div>
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.author}</div>
