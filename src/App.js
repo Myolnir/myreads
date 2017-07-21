@@ -17,24 +17,36 @@ class BooksApp extends React.Component {
   };
 
   moveToShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(() => {
-      this.setState((state) => {
-          books: state.books
-            .filter(bookFilter => book.id !== bookFilter.id)
-            .concat(shelf !== 'none' ? [{...book, shelf}] : [])
+    BooksAPI.update(book, shelf).then(data => {
+      this.setState(({ books }) => {
+          const isPresent = books.find(b => (
+          b.id === book.id
+        ));
+        if (!! isPresent) {
+          return {
+            books: books.filter(b =>
+              b.id === book.id ? b.shelf = shelf : b
+            )
+          }
+        }
+        return {
+          books: books.concat(
+            Object.assign({}, book, { shelf: shelf })
+          )
+        }
       });
     });
-  };
+  }
 
   render() {
     return (
       <div className="app">
-        <Route exact path="/search" render={() => (
+        <Route exact path="/search" render={({ history }) => (
           <SearchBooks
             moveToShelf={this.moveToShelf}
           />
         )}/>
-        <Route exact path='/' render={() => (
+        <Route exact path='/' render={({ history }) => (
           <BookShelfs
             books={this.state.books}
             moveToShelf={this.moveToShelf}
