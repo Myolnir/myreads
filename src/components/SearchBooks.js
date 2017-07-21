@@ -4,20 +4,32 @@ import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
 import sortBy from 'sort-by'
 import Book from './Book'
+import * as BooksAPI from './../BooksAPI'
+
 
 class SearchBooks extends Component {
 
   static propTypes = {
-    books: PropTypes.array.isRequired,
     moveToShelf: PropTypes.func.isRequired
   }
 
   state = {
-    query: ''
+    query: '',
+    results: []
   }
 
   updateQuery = (query) => {
-    this.setState({ query: query.trim() })
+    this.setState({ query });
+
+    BooksAPI.search(query.trim()).then(resp => {
+      let results = [];
+      console.log(results)
+
+      if (Array.isArray(resp)) {
+        results = resp;
+      }
+      this.setState({ results });
+    });
   }
 
   clearQuery = () => {
@@ -25,18 +37,10 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { query } = this.state
+    const { query, results } = this.state
     const { books, moveToShelf } = this.props
 
-    let showingBooks
-    if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i')
-      showingBooks = books.filter((book) => match.test(book.title))
-    } else {
-      showingBooks = books
-    }
-
-    showingBooks.sort(sortBy('title'))
+    results.sort(sortBy('title'))
 
     return (
       <div className="search-books">
@@ -53,16 +57,16 @@ class SearchBooks extends Component {
           </div>
         </div>
 
-        {showingBooks.length !== books.length && (
+        {results.length !== results.length && (
           <div className='showing-books'>
-            <span>Now showing {showingBooks.length} of {books.length} total</span>
+            <span>Now showing {results.length} of {results.length} total</span>
             <button onClick={this.clearQuery}>Show all</button>
           </div>
         )}
 
         <div className="search-books-results">
           <ol className="books-grid">
-            {showingBooks.map((book) => (
+            {results.map((book) => (
               <Book
                 key={book.id}
                 book={book}
