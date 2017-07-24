@@ -11,7 +11,6 @@ class Book extends Component {
   }
 
   render() {
-    debugger;
     const { book, moveToShelf } = this.props
     return (
       <li key={book.id}>
