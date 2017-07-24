@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
 import PropTypes from 'prop-types'
 import sortBy from 'sort-by'
 import Book from './Book'
@@ -38,7 +37,7 @@ class SearchBooks extends Component {
 
   render() {
     const { query, results } = this.state
-    const { books, moveToShelf } = this.props
+    const { moveToShelf } = this.props
 
     results.sort(sortBy('title'))
 
