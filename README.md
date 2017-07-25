@@ -20,11 +20,6 @@ This app was created for the Udacity React Nanodegree.
 - Shows books sorted by category in three shelves
 - Control to move books into a different category
 
-### Additional Features
-
-- Show number of books on each shelf
-- Show modal with additional information when clicking on a book
-
 ### create-react-app
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
