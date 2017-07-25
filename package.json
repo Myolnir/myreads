@@ -1,4 +1,13 @@
 {
+  "name": "MyReads",
+  "version": "1.0.0",
+  "description": "Udacity React Nanodegree",
+  "engines": {
+    "npm": ">=3",
+    "node": ">=5"
+  },
+  "author": "Angel Muelas Martinez <angel.muelas@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
     "prop-types": "^15.5.8",
@@ -8,7 +17,14 @@
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "babel-register": "^6.4.3",
+    "chai": "^3.5.0",
+    "enzyme": "^2.0.0",
+    "jsdom": "^8.0.1",
+    "mocha": "^2.4.5",
+    "react-dom": "^15.6.1",
+    "react-scripts": "0.9.5",
+    "react-test-renderer": "^15.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
