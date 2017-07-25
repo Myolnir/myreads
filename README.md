@@ -1,4 +1,5 @@
-# MyReads
+# MyReads  ![Build Status](https://travis-ci.org/Myolnir/myreads.svg?branch=master)
+
 
 MyReads is an app to organize books that you are reading, want to read and have read. It also includes a search function to add additional books.
 This app was created for the Udacity React Nanodegree.
