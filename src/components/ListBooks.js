@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import BookShelfs from './BookShelfs'
+import BookShelf from './BookShelf'
 
 class ListBooks extends Component {
 
@@ -21,9 +21,9 @@ class ListBooks extends Component {
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          <BookShelfs books={currentlyReading} moveToShelf={moveToShelf} title='Currently Reading'/>
-          <BookShelfs books={wantToRead} moveToShelf={moveToShelf} title='Want To Read'/>
-          <BookShelfs books={read} moveToShelf={moveToShelf} title='Read'/>
+          <BookShelf books={currentlyReading} moveToShelf={moveToShelf} title='Currently Reading'/>
+          <BookShelf books={wantToRead} moveToShelf={moveToShelf} title='Want To Read'/>
+          <BookShelf books={read} moveToShelf={moveToShelf} title='Read'/>
         </div>
         <div className="open-search">
           <Link to="/search">Add a book</Link>
