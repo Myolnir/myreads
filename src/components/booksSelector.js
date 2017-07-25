@@ -7,14 +7,19 @@ class BookSelector extends Component {
     moveToShelf: PropTypes.func.isRequired
   }
 
+
+  handleShelfChanger = (ev) => {
+    ev.preventDefault();
+    this.props.moveToShelf(this.props.book, ev.target.value);
+  }
+
   render() {
     const { book } = this.props
     return (
       <div className="book-shelf-changer">
-        <select onChange={
-            (event) => this.props.moveToShelf(book, event.target.value)
-          }
+        <select
           value={book.shelf}
+          onChange={(ev) => this.handleShelfChanger(ev)}
         >
           <option value="none" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>

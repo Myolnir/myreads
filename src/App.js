@@ -10,44 +10,61 @@ class BooksApp extends React.Component {
     books: []
   }
 
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    });
-  };
+  listBooks = () => {
+    BooksAPI.getAll()
+      .then(books => {
+        this.setState({ books });
+      })
+  }
 
-  moveToShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(data => {
-      this.setState(({ books }) => {
-          const isPresent = books.find(b => (
-          b.id === book.id
-        ));
-        if (!! isPresent) {
-          return {
-            books: books.filter(b =>
-              b.id === book.id ? b.shelf = shelf : b
-            )
-          }
-        }
-        return {
-          books: books.concat(
-            Object.assign({}, book, { shelf: shelf })
-          )
-        }
+  moveToShelf = (bookToChange, newShelf) => {
+    BooksAPI.update(bookToChange, newShelf)
+      .then(data => {
+        this.setState(currentStatus => ({
+          books: currentStatus.books.map(book => {
+            if(bookToChange.id === book.id) {
+              book.shelf = newShelf;
+            }
+            return book;
+          })
+        }));
       });
-    });
+  }
+
+  searchBooks = (query) => {
+    if(query) {
+      BooksAPI.search(query)
+        .then(response => {
+          let books = [];
+          if(Array.isArray(response)) {
+            books = response;
+          }
+          if(Array.isArray(response.books)) {
+            books = response.books;
+          }
+          this.setState({ books });
+        });
+    } else {
+      this.setState({ books: [] });
+    }
   }
 
   render() {
     return (
       <div className="app">
-        <Route exact path="/search" render={({ history }) => (
+        <Route exact path="/search" render={() => (
           <SearchBooks
             moveToShelf={this.moveToShelf}
+            books={this.state.books}
+            searchBooks={this.searchBooks}
           />
         )}/>
-        <Route exact path='/' render={({ history }) => (
-          <ListBooks books={this.state.books} moveToShelf={this.moveToShelf} />
+        <Route exact path='/' render={() => (
+          <ListBooks
+            books={this.state.books}
+            moveToShelf={this.moveToShelf}
+            listBooks={this.listBooks}
+           />
         )}/>
       </div>
     )

@@ -7,7 +7,12 @@ class ListBooks extends Component {
 
   static propTypes = {
     books: PropTypes.array.isRequired,
-    moveToShelf: PropTypes.func.isRequired
+    moveToShelf: PropTypes.func.isRequired,
+    listBooks: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    this.props.listBooks();
   }
 
   render() {

@@ -3,44 +3,33 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import sortBy from 'sort-by'
 import Book from './Book'
-import * as BooksAPI from './../BooksAPI'
-
 
 class SearchBooks extends Component {
 
   static propTypes = {
-    moveToShelf: PropTypes.func.isRequired
+    moveToShelf: PropTypes.func.isRequired,
+    books: PropTypes.array.isRequired,
+    searchBooks: PropTypes.func.isRequired
   }
 
   state = {
-    query: '',
-    results: []
+    query: ''
   }
 
   updateQuery = (query) => {
     this.setState({ query });
-
-    BooksAPI.search(query.trim()).then(resp => {
-      let results = [];
-      console.log(results)
-
-      if (Array.isArray(resp)) {
-        results = resp;
-      }
-      this.setState({ results });
-    });
+    this.props.searchBooks(this.state.query)
   }
 
-  clearQuery = () => {
-    this.setState({ query: '' })
-    this.setState({ results: [] })
+  componentDidMount() {
+    this.props.searchBooks(this.state.query);
   }
 
   render() {
-    const { query, results } = this.state
-    const { moveToShelf } = this.props
+    const { query } = this.state
+    const { moveToShelf, books } = this.props
 
-    results.sort(sortBy('title'))
+    books.sort(sortBy('title'))
 
     return (
       <div className="search-books">
@@ -57,16 +46,9 @@ class SearchBooks extends Component {
           </div>
         </div>
 
-        {results.length !== 0 && (
-          <div className='showing-books'>
-            <span>Now showing {results.length} of {results.length} total</span>
-            <button onClick={this.clearQuery}>Clear query</button>
-          </div>
-        )}
-
         <div className="search-books-results">
           <ol className="books-grid">
-            {results.map((book) => (
+            {books.map((book) => (
               <Book
                 key={book.id}
                 book={book}
