@@ -115,7 +115,7 @@ body, .app {
   flex-wrap: wrap;
 }
 .books-grid li {
-  padding: 40px 45px;
+  padding: 10px 15px;
   text-align: left;
 }
 

@@ -33,6 +33,7 @@ class SearchBooks extends Component {
 
   clearQuery = () => {
     this.setState({ query: '' })
+    this.setState({ results: [] })
   }
 
   render() {
@@ -56,7 +57,7 @@ class SearchBooks extends Component {
           </div>
         </div>
 
-        {results.length !== results.length && (
+        {results.length !== 0 && (
           <div className='showing-books'>
             <span>Now showing {results.length} of {results.length} total</span>
             <button onClick={this.clearQuery}>Show all</button>
