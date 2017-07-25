@@ -1,4 +1,4 @@
-# MyReads  ![Build Status](https://travis-ci.org/Myolnir/myreads.svg?branch=master)
+# MyReads  ![Build Status](https://travis-ci.org/Myolnir/myreads.svg?branch=master)  [![Coverage Status](https://coveralls.io/repos/github/Myolnir/myreads/badge.svg?branch=master)](https://coveralls.io/github/Myolnir/myreads?branch=master)
 
 
 MyReads is an app to organize books that you are reading, want to read and have read. It also includes a search function to add additional books.
