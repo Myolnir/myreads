@@ -11,6 +11,10 @@ This app was created for the Udacity React Nanodegree.
 - Run `npm start`
 - Go to `http://localhost:3000` in your browser
 
+## Testing
+
+- Run `npm test`
+
 ## Features
 
 - Shows books sorted by category in three shelves
