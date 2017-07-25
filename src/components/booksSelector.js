@@ -8,7 +8,7 @@ class BookSelector extends Component {
   }
 
   render() {
-    const { book, moveToShelf } = this.props
+    const { book } = this.props
     return (
       <div className="book-shelf-changer">
         <select onChange={
