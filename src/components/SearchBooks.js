@@ -18,7 +18,7 @@ class SearchBooks extends Component {
 
   updateQuery = (query) => {
     this.setState({ query });
-    this.props.searchBooks(this.state.query)
+    this.props.searchBooks(this.state.query);
   }
 
   componentDidMount() {
@@ -30,6 +30,7 @@ class SearchBooks extends Component {
     const { moveToShelf, books } = this.props
 
     books.sort(sortBy('title'))
+    console.log(books);
 
     return (
       <div className="search-books">

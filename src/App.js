@@ -33,7 +33,7 @@ class BooksApp extends React.Component {
 
   searchBooks = (query) => {
     if(query) {
-      BooksAPI.search(query)
+      BooksAPI.search(query.trim())
         .then(response => {
           let books = [];
           if(Array.isArray(response)) {
