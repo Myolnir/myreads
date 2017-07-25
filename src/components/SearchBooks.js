@@ -60,7 +60,7 @@ class SearchBooks extends Component {
         {results.length !== 0 && (
           <div className='showing-books'>
             <span>Now showing {results.length} of {results.length} total</span>
-            <button onClick={this.clearQuery}>Show all</button>
+            <button onClick={this.clearQuery}>Clear query</button>
           </div>
         )}
 
