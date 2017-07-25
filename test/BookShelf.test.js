@@ -1,15 +1,17 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import Book from '../src/components/Book';
-import { book }  from './book.fixture';
+import { books }  from './book.fixture';
+import BookShelf from '../src/components/BookShelf';
 
-describe("<Book />", () => {
+describe("<BookShelf />", () => {
   it("Should render the component", ()  => {
     const moveToShelf = function(){}
+    const title = 'Test title'
     const bookWrapper = mount(
-      <Book
-        book={book}
+      <BookShelf
+        books={books}
         moveToShelf={moveToShelf}
+        title={title}
       />
     )
     expect(bookWrapper.html()).toMatchSnapshot();
