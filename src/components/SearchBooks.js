@@ -30,8 +30,6 @@ class SearchBooks extends Component {
     const { moveToShelf, books } = this.props
 
     books.sort(sortBy('title'))
-    console.log(books);
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
